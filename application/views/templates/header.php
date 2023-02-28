@@ -138,7 +138,7 @@
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Master</h6>
-                        <a class="collapse-item active" href="<?= base_url() ?>buku"><span class="fa fa-book"></span> Buku</a>
+                        <!-- <a class="collapse-item active" href="<?= base_url() ?>buku"><span class="fa fa-book"></span> Buku</a> -->
                         <a class="collapse-item active" href="<?= base_url() ?>kategori"><span class="fa fa-list-alt"></span>  Kategori</a>
                         <a class="collapse-item active" href="<?= base_url() ?>penerbit"><span class="fas fa-book-open"> Penerbit</a>
                         <a class="collapse-item active" href="<?= base_url() ?>rak"><i class="fa fa-align-justify"></i> Rak</a>

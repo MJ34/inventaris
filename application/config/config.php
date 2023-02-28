@@ -33,7 +33,7 @@ define('DBUSERNAME', 'root');
 define('DBPASSWORD', '');
 define('DBNAME', 'db_rab');
 define('SITE_URL', $config['base_url']);
-define('BASH_PATH', 'C:/xampp/htdocs/perpusweb/');
+define('BASH_PATH', 'C:/laragon/www/sinoban/');
 
 
 /*

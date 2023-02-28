@@ -32,7 +32,7 @@
     <body>
         <div style="text-align:center">
         
-            <h1 class=""><b> LAPORAN BUKU PEMBELIAN </b></h1> 
+            <h1 class=""><b> LAPORAN BUKU INVENTARIS </b></h1> 
             <br>
         </div>
         <table id="table" style="text-align:center">
@@ -40,11 +40,14 @@
                   <tr>
                     <th width="1%">No</th>
                     <th>Tanggal</th>
+					<th>Kategori</th>
                     <th>Judul</th>
+					<th>Cetakan</th>
                     <th>Penanggung Jawab</th>
                     <th>Kota</th>
                     <th>Penerbit</th>
                     <th>Tahun</th>
+					<th>Lokasi</th>
                     <th>Jumlah Judul</th>
                     <th>No Inventaris</th>
                 </tr>
@@ -54,13 +57,16 @@
                             <tr>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $no?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= date('d-m-Y', strtotime($b->tanggal)) ?></td>
+                                <td onclick="detail('<?= $b->id ?>')"><?= $b->kategori ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->judul ?></td>
+                                <td onclick="detail('<?= $b->id ?>')"><?= $b->cetakan ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->penanggungjawab ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->kota ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->penerbit ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->tahun ?></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->jumlahjudul ?></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->no_inventaris ?></td>
+								<td onclick="detail('<?= $b->id ?>')"><?= $b->lokasi ?></td>
+								<td onclick="detail('<?= $b->id ?>')"><?= $b->jumlahjudul ?></td>
+								<td onclick="detail('<?= $b->id ?>')"><?= $b->no_inventaris ?></td>
                             </tr>
                             <?php $no++;}?>
                         </tbody>

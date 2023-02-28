@@ -343,19 +343,22 @@ class pembelian extends CI_Controller {
 				'left' => ['borderStyle'  => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN] // Set border left dengan garis tipis
 			  ]
 			];
-			$sheet->setCellValue('A1', "LAPORAN PEMBELIAN BUKU"); // Set kolom A1 dengan tulisan "DATA PEMBELIAN BUKU"
+			$sheet->setCellValue('A1', "LAPORAN INVENTARIS BUKU"); // Set kolom A1 dengan tulisan "DATA PEMBELIAN BUKU"
 			$sheet->mergeCells('A1:L1'); // Set Merge Cell pada kolom A1 sampai E1
 			$sheet->getStyle('A1')->getFont()->setBold(true); // Set bold kolom A1
 			// Buat header tabel nya pada baris ke 3
 			$sheet->setCellValue('A3', "NO"); // Set kolom A3 dengan tulisan "NO"
 			$sheet->setCellValue('B3', "TANGGAL"); // Set kolom B3 dengan tulisan "TANGGAL"
-			$sheet->setCellValue('C3', "JUDUL"); // Set kolom D3 dengan tulisan "JUDUL"
-			$sheet->setCellValue('D3', "PENANGGUNG JAWAB"); // Set kolom F3 dengan tulisan "PENANGGUNGJAWAB"
-			$sheet->setCellValue('E3', "KOTA"); // Set kolom G3 dengan tulisan "KOTA"
-			$sheet->setCellValue('F3', "PENERBIT"); // Set kolom H3 dengan tulisan "PENERBIT"
-			$sheet->setCellValue('G3', "TAHUN"); // Set kolom I3 dengan tulisan "TAHUN"
-			$sheet->setCellValue('H3', "JUMLAH JUDUL"); // Set kolom J3 dengan tulisan "JUMLAH JUDUL"
-			$sheet->setCellValue('I3', "NO INVENTARIS"); // Set kolom L3 dengan tulisan "NO INVENTARIS"
+			$sheet->setCellValue('C3', "KATAGORI"); // Set kolom C3 dengan tulisan "KATAGORI"
+			$sheet->setCellValue('D3', "JUDUL"); // Set kolom D3 dengan tulisan "JUDUL"
+			$sheet->setCellValue('E3', "CETAKAN"); // Set kolom E3 dengan tulisan "CETAKAN"
+			$sheet->setCellValue('F3', "PENANGGUNG JAWAB"); // Set kolom F3 dengan tulisan "PENANGGUNGJAWAB"
+			$sheet->setCellValue('G3', "KOTA"); // Set kolom G3 dengan tulisan "KOTA"
+			$sheet->setCellValue('H3', "PENERBIT"); // Set kolom H3 dengan tulisan "PENERBIT"
+			$sheet->setCellValue('I3', "TAHUN"); // Set kolom I3 dengan tulisan "TAHUN"
+			$sheet->setCellValue('J3', "LOKASI"); // Set kolom J3 dengan tulisan "LOKASI"
+			$sheet->setCellValue('K3', "JUMLAH JUDUL"); // Set kolom K3 dengan tulisan "JUMLAH JUDUL"
+			$sheet->setCellValue('L3', "NO INVENTARIS"); // Set kolom L3 dengan tulisan "NO INVENTARIS"
 			// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 			$sheet->getStyle('A1')->applyFromArray($style_col);
 			$sheet->getStyle('A3')->applyFromArray($style_col);
@@ -367,6 +370,9 @@ class pembelian extends CI_Controller {
 			$sheet->getStyle('G3')->applyFromArray($style_col);
 			$sheet->getStyle('H3')->applyFromArray($style_col);
 			$sheet->getStyle('I3')->applyFromArray($style_col);
+			$sheet->getStyle('J3')->applyFromArray($style_col);
+			$sheet->getStyle('K3')->applyFromArray($style_col);
+			$sheet->getStyle('L3')->applyFromArray($style_col);
 			// Panggil function view yang ada di pembelian_Model untuk menampilkan semua data pembelian
 			$pembelian = $this->pembelian_model->view();
 			$no = 1; // Untuk penomoran tabel, di awal set dengan 1
@@ -374,13 +380,16 @@ class pembelian extends CI_Controller {
 			foreach($pembelian as $data){ // Lakukan looping pada variabel pembelian
 			  $sheet->setCellValue('A'.$numrow, $no);
 			  $sheet->setCellValue('B'.$numrow, $data->tanggal);
-			  $sheet->setCellValue('C'.$numrow, $data->judul);
-			  $sheet->setCellValue('D'.$numrow, $data->penanggungjawab);
-			  $sheet->setCellValue('E'.$numrow, $data->kota);
-			  $sheet->setCellValue('F'.$numrow, $data->penerbit);
-			  $sheet->setCellValue('G'.$numrow, $data->tahun);
-			  $sheet->setCellValue('H'.$numrow, $data->jumlahjudul);
-			  $sheet->setCellValue('I'.$numrow, $data->no_inventaris);
+			  $sheet->setCellValue('C'.$numrow, $data->kategori);
+			  $sheet->setCellValue('D'.$numrow, $data->judul);
+			  $sheet->setCellValue('E'.$numrow, $data->cetakan);
+			  $sheet->setCellValue('F'.$numrow, $data->penanggungjawab);
+			  $sheet->setCellValue('G'.$numrow, $data->kota);
+			  $sheet->setCellValue('H'.$numrow, $data->penerbit);
+			  $sheet->setCellValue('I'.$numrow, $data->tahun);
+			  $sheet->setCellValue('J'.$numrow, $data->lokasi);
+			  $sheet->setCellValue('K'.$numrow, $data->jumlahjudul);
+			  $sheet->setCellValue('L'.$numrow, $data->no_inventaris);
 			  
 			  // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			  $sheet->getStyle('A'.$numrow)->applyFromArray($style_row);
@@ -392,30 +401,36 @@ class pembelian extends CI_Controller {
 			  $sheet->getStyle('G'.$numrow)->applyFromArray($style_row);
 			  $sheet->getStyle('H'.$numrow)->applyFromArray($style_row);
 			  $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
+			  $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
+			  $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
+			  $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
 			  $no++; // Tambah 1 setiap kali looping
 			  $numrow++; // Tambah 1 setiap kali looping
 			}
 			// Set width kolom
 			$sheet->getColumnDimension('A')->setWidth(4); // Set width kolom A
-			$sheet->getColumnDimension('B')->setWidth(10); // Set width kolom B
-			$sheet->getColumnDimension('C')->setWidth(30); // Set width kolom C
+			$sheet->getColumnDimension('B')->setWidth(15); // Set width kolom B
+			$sheet->getColumnDimension('C')->setWidth(20); // Set width kolom C
 			$sheet->getColumnDimension('D')->setWidth(50); // Set width kolom D
-			$sheet->getColumnDimension('E')->setWidth(30); // Set width kolom E
+			$sheet->getColumnDimension('E')->setWidth(10); // Set width kolom E
 			$sheet->getColumnDimension('F')->setWidth(30); // Set width kolom E
 			$sheet->getColumnDimension('G')->setWidth(10); // Set width kolom E
-			$sheet->getColumnDimension('H')->setWidth(20); // Set width kolom E
+			$sheet->getColumnDimension('H')->setWidth(30); // Set width kolom E
 			$sheet->getColumnDimension('I')->setWidth(10); // Set width kolom E
+			$sheet->getColumnDimension('J')->setWidth(20);
+			$sheet->getColumnDimension('K')->setWidth(15);
+			$sheet->getColumnDimension('L')->setWidth(20);
 			
 			// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
 			$sheet->getDefaultRowDimension()->setRowHeight(-1);
 			// Set orientasi kertas jadi LANDSCAPE
 			$sheet->getPageSetup()->setOrientation(\PhpOffice\PhpSpreadsheet\Worksheet\PageSetup::ORIENTATION_LANDSCAPE);
 			// Set judul file excel nya
-			$sheet->setTitle("Laporan Pembelian Buku.");
+			$sheet->setTitle("Laporan Inventaris Buku.");
 			$filename = ''; // set filename for excel file to be exported
 			// Proses file excel
 			header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-			header('Content-Disposition: attachment; filename="Laporan Pembelian Buku.xlsx"'); // Set nama file excel nya
+			header('Content-Disposition: attachment; filename="Laporan Inventaris Buku.xlsx"'); // Set nama file excel nya
 			header('Cache-Control: max-age=0');
 			$writer = new xlsx($spreadsheet);
 			$writer->save('php://output');

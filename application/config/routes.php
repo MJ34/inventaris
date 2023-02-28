@@ -16,6 +16,7 @@ $route['pengadaan'] = 'Pengadaan/index';
 $route['rak'] = 'Rak/index';
 $route['boq'] = 'Boq/index';
 $route['login'] = 'Login/index';
+$route['logout'] = 'Logout/index';
 $route['pembelian'] = 'pembelian/index';
 $route['hibah'] = 'hibah/index';
 //user
