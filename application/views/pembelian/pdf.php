@@ -48,7 +48,6 @@
                     <th>Penerbit</th>
                     <th>Tahun</th>
 					<th>Lokasi</th>
-                    <th>Jumlah Judul</th>
                     <th>No Inventaris</th>
                 </tr>
             </thead>
@@ -65,7 +64,6 @@
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->penerbit ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->tahun ?></td>
 								<td onclick="detail('<?= $b->id ?>')"><?= $b->lokasi ?></td>
-								<td onclick="detail('<?= $b->id ?>')"><?= $b->jumlahjudul ?></td>
 								<td onclick="detail('<?= $b->id ?>')"><?= $b->no_inventaris ?></td>
                             </tr>
                             <?php $no++;}?>

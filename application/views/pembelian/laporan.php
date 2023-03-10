@@ -65,7 +65,6 @@
     								<th>Penerbit</th>
     								<th>Tahun</th>
     								<th>Lokasi</th>
-    								<th>Jumlah Judul</th>
     							</tr>
     						</thead>
     						<tbody style="cursor:pointer;">
@@ -83,7 +82,6 @@
     									<td onclick="detail('<?= $b->id ?>')"><?= $b->penerbit ?></td>
     									<td onclick="detail('<?= $b->id ?>')"><?= $b->tahun ?></td>
     									<td onclick="detail('<?= $b->id ?>')"><?= $b->lokasi ?></td>
-    									<td onclick="detail('<?= $b->id ?>')"><?= $b->jumlahjudul ?></td>
     								</tr>
     							<?php $no++;
 								} ?>

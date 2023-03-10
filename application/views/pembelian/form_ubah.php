@@ -42,13 +42,13 @@
                             <div class="col-lg-6">
                                 <!-- Tanggal -->
                                 <div class="form-group"><label>Tanggal</label>
-                                    <input class="form-control" name="tanggal" type="date" value="<?= $d->tanggal ?>">
+                                    <input class="form-control" name="tanggal" type="date" value="<?= $d->tanggal ?>" >
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <!-- No Inventaris -->
                                 <div class="form-group"><label>No Inventaris</label>
-                                    <input class="form-control" name="no_inventaris" type="text"  value="<?= $d->no_inventaris ?>">
+                                    <input class="form-control" name="no_inventaris" type="text"  value="<?= $d->no_inventaris ?>" readonly>
                                 </div>
                             </div>
                         </div>
@@ -176,9 +176,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- Jumlah Judul -->
-                                <div class="form-group"><label>Jumlah Judul</label>
-                                    <input class="form-control" name="jumlahjudul" type="number" value="<?= $d->jumlahjudul ?>">
-                                </div>
+                                
                             </div>
                         </div>
 

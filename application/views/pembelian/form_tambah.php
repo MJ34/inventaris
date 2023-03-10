@@ -45,10 +45,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- No Inventaris -->
-                                <div class="form-group"><label>No Inventaris</label>
-                                    <input class="form-control" name="no_inventaris" type="text" placeholder="">
-                                    <!--<input type="text" readonly class="form-control" value="<?=$no_inventaris;?>" name="no_inventaris">-->
-                                </div>
+                               
                             </div>
                         </div>
 
@@ -157,10 +154,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- Jumlah Judul -->
-                                <div class="form-group"><label>Jumlah Judul</label>
-                                    <input class="form-control" name="jumlahjudul" type="number" placeholder="">
-                                </div>
-                            </div>
+							</div>
                         </div>
 
 
