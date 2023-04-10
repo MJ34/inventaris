@@ -47,8 +47,8 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- No Inventaris -->
-                                <div class="form-group"><label>No Inventaris</label>
-                                    <input class="form-control" name="no_inventaris" type="text"  value="<?= $d->no_inventaris ?>">
+                                <div class="form-group"><label>No Hibah</label>
+                                    <input class="form-control" name="no_hibah" type="text"  value="<?= $d->no_hibah ?>" readonly>
                                 </div>
                             </div>
                         </div>
@@ -59,14 +59,39 @@
                                 <input class="" name="id" type="hidden" value="<?= $d->id ?>">
                                 <input class="form-control" name="judul" type="text" value="<?= $d->judul ?>">
                             </div>
-                            <!-- Asal -->
-                            <div class="form-group"><label>Asal</label>
-                                <input class="form-control" name="asal" type="text" value="<?= $d->asal ?>">
-                            </div>
 
-                            <!-- Pengarang -->
-                            <div class="form-group"><label>Pengarang</label>
-                                <input class="form-control" name="pengarang" type="text" value="<?= $d->pengarang ?>">
+							<!-- Penerbit -->
+							<?php if($jmlKategori > 0): ?>
+                            <div class="form-group"><label>Kategori</label>
+                                <select name="kategori" class="form-control chosen" value="<?= $d->kategori ?>">
+                                    <?php foreach($kategori as $p): ?>
+
+                                    <?php if($d->kategori == $p->kategori): ?>
+                                    <option value="<?= $p->kategori ?>" selected><?= $p->kategori ?></option>
+                                    <?php else: ?>
+                                    <option value="<?= $p->kategori ?>"><?= $p->kategori ?></option>
+                                    <?php endif; ?>
+
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <?php else: ?>
+                            <div class="form-group"><label>Kategori</label>
+                                <input type="hidden" name="kategori">
+                                <div class="d-sm-flex justify-content-between">
+                                    <span class="text-danger"><i>(Belum Ada Data Kategori!)</i></span>
+                                    <a href="<?= base_url() ?>kategori" class="btn btn-sm btn-primary btn-icon-split">
+                                        <span class="icon text-white">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <div class="form-group"><label>Cetakan Ke</label>
+                                <input class="" name="id" type="hidden" value="<?= $d->id ?>">
+                                <input class="form-control" name="cetakan" type="text" value="<?= $d->cetakan ?>">
                             </div>
 
                             <!-- Penanggung Jawab -->
@@ -80,6 +105,35 @@
                             <div class="form-group"><label>Kota</label>
                                 <input class="form-control" name="kota" type="text" value="<?= $d->kota ?>">
                             </div>
+
+							  <!-- Lokasi -->
+							  <?php if($jmlLokasi > 0): ?>
+                            <div class="form-group"><label>Lokasi</label>
+                                <select name="lokasi" class="form-control chosen" value="<?= $d->lokasi ?>">
+                                    <?php foreach($lokasi as $l): ?>
+
+                                    <?php if($d->lokasi == $l->lokasi): ?>
+                                    <option value="<?= $l->lokasi ?>" selected><?= $l->lokasi ?></option>
+                                    <?php else: ?>
+                                    <option value="<?= $l->lokasi ?>"><?= $l->lokasi ?></option>
+                                    <?php endif; ?>
+
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <?php else: ?>
+                            <div class="form-group"><label>lokasi</label>
+                                <input type="hidden" name="lokasi">
+                                <div class="d-sm-flex justify-content-between">
+                                    <span class="text-danger"><i>(Belum Ada Data lokasi!)</i></span>
+                                    <a href="<?= base_url() ?>lokasi" class="btn btn-sm btn-primary btn-icon-split">
+                                        <span class="icon text-white">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
 
                              <!-- Penerbit -->
                              <?php if($jmlPenerbit > 0): ?>
@@ -113,23 +167,15 @@
                         </div>
 
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <div class="col-lg-4">
+                             <div class="col-lg-6">
                                 <!-- Tahunl -->
                                 <div class="form-group"><label>Tahun</label>
                                     <input class="form-control" name="tahun" type="number" value="<?= $d->tahun ?>">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <!-- Jumlah Judul -->
-                                <div class="form-group"><label>Jumlah Judul</label>
-                                    <input class="form-control" name="jumlahjudul" type="number" value="<?= $d->jumlahjudul ?>">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <!-- Jumlah EKS -->
-                                <div class="form-group"><label>Jumlah EKS</label>
-                                    <input class="form-control" name="jumlaheks" type="number" value="<?= $d->jumlaheks ?>">
-                                </div>
+                                
                             </div>
                         </div>
 

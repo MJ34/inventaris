@@ -45,10 +45,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <!-- No Inventaris -->
-                                <div class="form-group"><label>No Inventaris</label>
-                                    <input class="form-control" name="no_inventaris" type="text" placeholder="">
-                                    <!--<input type="text" readonly class="form-control" value="<?=$no_inventaris;?>" name="no_inventaris">-->
-                                </div>
+                                
                             </div>
                         </div>
 
@@ -57,14 +54,33 @@
                             <div class="form-group"><label>Judul Buku</label>
                                 <input class="form-control" name="judul" type="text" placeholder="">
                             </div>
-                            <!-- Asal -->
-                            <div class="form-group"><label>Asal</label>
-                                <input class="form-control" name="asal" type="text" placeholder="">
-                            </div>
 
-                            <!-- Pengarang -->
-                            <div class="form-group"><label>Pengarang</label>
-                                <input class="form-control" name="pengarang" type="text" placeholder="">
+							<!-- Kategori -->
+							<?php if($jmlKategori > 0): ?>
+                            <div class="form-group"><label>Kategori</label>
+                                <select name="kategori" class="form-control chosen">
+                                    <option value="">--Pilih--</option>
+                                    <?php foreach($kategori as $k): ?>
+                                    <option value="<?= $k->kategori ?>"><?= $k->kategori ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <?php else: ?>
+                            <div class="form-group"><label>Kategori</label>
+                                <input type="hidden" name="kategori">
+                                <div class="d-sm-flex justify-content-between">
+                                    <span class="text-danger"><i>(Belum Ada Data Kategori!)</i></span>
+                                    <a href="<?= base_url() ?>kategori" class="btn btn-sm btn-primary btn-icon-split">
+                                        <span class="icon text-white">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                        <div class="form-group"><label>Cetakan Ke</label>
+                                <input class="form-control" name="cetakan" type="text" placeholder="">
                             </div>
 
                             <!-- Penanggung Jawab -->
@@ -78,6 +94,30 @@
                             <div class="form-group"><label>Kota</label>
                                 <input class="form-control" name="kota" type="text" placeholder="">
                             </div>
+
+							 <!-- Lokasi -->
+							   <?php if($jmlLokasi > 0): ?>
+                            <div class="form-group"><label>Lokasi</label>
+                                <select name="lokasi" class="form-control chosen">
+                                    <option value="">--Pilih--</option>
+                                    <?php foreach($lokasi as $l): ?>
+                                    <option value="<?= $l->lokasi ?>"><?= $l->lokasi ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <?php else: ?>
+                            <div class="form-group"><label>Lokasi</label>
+                                <input type="hidden" name="lokasi">
+                                <div class="d-sm-flex justify-content-between">
+                                    <span class="text-danger"><i>(Belum Ada Data Lokasi!)</i></span>
+                                    <a href="<?= base_url() ?>lokasi" class="btn btn-sm btn-primary btn-icon-split">
+                                        <span class="icon text-white">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
 
                             <!-- Penerbit -->
                             <?php if($jmlPenerbit > 0): ?>
@@ -106,23 +146,15 @@
                         </div>
 
                         <div class="d-sm-flex align-items-center justify-content-between mb-0">
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <!-- Tahunl -->
                                 <div class="form-group"><label>Tahun</label>
                                     <input class="form-control" name="tahun" type="number" placeholder="">
                                 </div>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <!-- Jumlah Judul -->
-                                <div class="form-group"><label>Jumlah Judul</label>
-                                    <input class="form-control" name="jumlahjudul" type="number" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <!-- Jumlah EKS -->
-                                <div class="form-group"><label>Jumlah EKS</label>
-                                    <input class="form-control" name="jumlaheks" type="number" placeholder="">
-                                </div>
+                                
                             </div>
                         </div>
 

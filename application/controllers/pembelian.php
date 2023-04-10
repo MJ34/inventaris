@@ -124,7 +124,6 @@ class pembelian extends CI_Controller {
 			redirect('pembelian');
 		}
 
-	
 		public function proses_tambah()
 		{
 			
@@ -148,8 +147,6 @@ class pembelian extends CI_Controller {
 			$tahun = $this->input->post('tahun');
 			$lokasi = $this->input->post('lokasi');
 			$jumlahjudul = $this->input->post('jumlahjudul');
-
-			
 		
 		
 			if ($namaFile == '') {

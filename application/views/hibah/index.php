@@ -34,17 +34,14 @@
                             <tr>
                                 <th width="1%">No</th>
                                 <th>Foto</th>
-                                <th>No Inventaris</th>
+								<th>No Hibah</th>
                                 <th>Tanggal</th>
-                                <th>Asal</th>
                                 <th>Judul</th>
-                                <th>Pengarang</th>
                                 <th>Penanggung Jawab</th>
                                 <th>Kota</th>
                                 <th>Penerbit</th>
                                 <th>Tahun</th>
                                 <th>Jumlah Judul</th>
-                                <th>Jumlah Eks</th>
                                 <th width="1%">Aksi</th>
                             </tr>
                         </thead>
@@ -54,17 +51,14 @@
                                 <td onclick="detail('<?= $b->id ?>')"><?= $no?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><img style="border-radius: 5px;"
                                         src="assets/upload/hibah/<?= $b->foto ?>" alt="" width="50px"></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->no_inventaris ?></td>
+                                <td onclick="detail('<?= $b->id ?>')"><?= $b->no_hibah ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= date('d-m-Y', strtotime($b->tanggal)) ?></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->asal ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->judul ?></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->pengarang ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->penanggungjawab ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->kota ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->penerbit ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->tahun ?></td>
                                 <td onclick="detail('<?= $b->id ?>')"><?= $b->jumlahjudul ?></td>
-                                <td onclick="detail('<?= $b->id ?>')"><?= $b->jumlaheks ?></td>
                                 <td>
                                     <center>
                                         <a href="<?= base_url() ?>hibah/ubah/<?= $b->id ?>"

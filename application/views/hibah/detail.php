@@ -54,18 +54,18 @@
                                             <h6 class="h6 text-gray-800"><?= $d->tanggal?></h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th width="180px"><h6>No Inventaris</h6></th>
+                                   <tr>
+                                        <th width="180px"><h6>No Hibah</h6></th>
                                         <th width="10px">:</th>
                                         <td>
-                                            <h6 class="h6 text-gray-800"><?= $d->no_inventaris?></h6>
+                                            <h6 class="h6 text-gray-800"><?= $d->no_hibah?></h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th width="180px"><h6>Asal</h6></th>
+									<tr>
+                                        <th width="180px"><h6>Lokasi Buku</h6></th>
                                         <th width="10px">:</th>
                                         <td>
-                                            <h6 class="h6 text-gray-800"><?= $d->asal?></h6>
+                                            <h6 class="h6 text-gray-800"><?= $d->lokasi?></h6>
                                         </td>
                                     </tr>
                                     <tr>
@@ -81,17 +81,7 @@
                                         <td>
                                             <h6 class="h6 text-gray-800"><?= $d->jumlahjudul?></h6>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <th width="180px"><h6>Jumlah EKS</h6></th>
-                                        <th width="10px">:</th>
-                                        <td>
-                                            <h6 class="h6 text-gray-800"><?= $d->jumlaheks?></h6>
-                                        </td>
-                                    </tr>
-                                    
-                                    
-                                    
+                                    </tr> 
                                     
                                 </table>
                             </div>
@@ -109,14 +99,21 @@
                                         <th width="150px"><h6>Judul</h6></th>
                                         <th width="10px">:</th>
                                         <td>
-                                            <h6 class="h6 text-gray-800"><?= $d->asal?></h6>
+                                            <h6 class="h6 text-gray-800"><?= $d->judul?></h6>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th width="150px"><h6>Pengarang</h6></th>
+                                        <th width="150px"><h6>Kategori</h6></th>
                                         <th width="10px">:</th>
                                         <td>
-                                            <h6 class="h6 text-gray-800"><?= $d->pengarang?></h6>
+                                            <h6 class="h6 text-gray-800"><?= $d->kategori?></h6>
+                                        </td>
+                                    </tr>
+									<tr>
+                                        <th width="150px"><h6>Cetakan</h6></th>
+                                        <th width="10px">:</th>
+                                        <td>
+                                            <h6 class="h6 text-gray-800"><?= $d->cetakan?></h6>
                                         </td>
                                     </tr>
                                     <tr>

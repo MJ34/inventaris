@@ -159,6 +159,17 @@
                 </a>
             </li>
 
+			<?php if($title == 'hibah'): ?>
+            <li class="nav-item active">
+                <?php else: ?>
+            <li class="nav-item">
+                <?php endif; ?>
+                <a class="nav-link" href="<?= base_url() ?>hibah">
+				<i class="fa fa-handshake"></i>
+                    <span>Hibah Buku</span>
+                </a>
+            </li>
+
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- <?php if($title == 'pembelian'  or $title == 'hibah' or $title == 'buku_keliling'): ?>
             <li class="nav-item active">
@@ -210,8 +221,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Laporan</h6>
                         <!-- <a class="collapse-item active" href="<?= base_url() ?>laporan/pengadaan">Pengadaan Buku</a> -->
-                        <a class="collapse-item active" href="<?= base_url() ?>laporan/pembelian">INVENTARIS Buku</a>
-                        <!-- <a class="collapse-item active" href="<?= base_url() ?>laporan/hibah">Hibah Buku</a> -->
+                        <a class="collapse-item active" href="<?= base_url() ?>laporan/pembelian">INVENTARIS BUKU</a>
+                        <a class="collapse-item active" href="<?= base_url() ?>laporan/hibah">HIBAH BUKU</a>
                         <!-- <a class="collapse-item active" href="<?= base_url() ?>laporan/buku_keliling">P.Buku Keliling</a> -->
                     </div>
 

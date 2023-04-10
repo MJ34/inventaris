@@ -11,7 +11,9 @@ class hibah extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('download');
 		$this->load->library('pagination');
-		$this->load->helper('cookie');
+		$this->load->helper('cookie');		
+		$this->load->model('kategori_model');
+		$this->load->model('Lokasi_model');
 		$this->load->model('penerbit_model');
 		$this->load->model('hibah_model');
 	  }
@@ -30,10 +32,15 @@ class hibah extends CI_Controller {
 		{
 			$data['title'] = 'Buku hibah';
 			//data untuk select
+			$data['kategori'] = $this->kategori_model->data()->result();
+			$data['lokasi'] = $this->Lokasi_model->data()->result();
 			$data['penerbit'] = $this->penerbit_model->data()->result();
-			$data['id'] = $this->hibah_model->buat_kode();
+			$data['id'] = $this->hibah_model->buat_kode();			
+			$data['no_hibah'] = $this->hibah_model->buat_kode2();
 	
 			//jml data
+			$data['jmlKategori'] = $this->kategori_model->data()->num_rows();
+			$data['jmlLokasi'] = $this->Lokasi_model->data()->num_rows();
 			$data['jmlPenerbit'] = $this->penerbit_model->data()->num_rows();
 			
 	
@@ -50,9 +57,13 @@ class hibah extends CI_Controller {
 			$data['data'] = $this->hibah_model->detail_data($where, 'hibah')->result();
 	
 			//data untuk select
+			$data['kategori'] = $this->kategori_model->data()->result();
+			$data['lokasi'] = $this->Lokasi_model->data()->result();
 			$data['penerbit'] = $this->penerbit_model->data()->result();
 			
 			//jml data
+			$data['jmlKategori'] = $this->kategori_model->data()->num_rows();
+			$data['jmlLokasi'] = $this->Lokasi_model->data()->num_rows();
 			$data['jmlPenerbit'] = $this->penerbit_model->data()->num_rows();
 			
 	
@@ -125,17 +136,17 @@ class hibah extends CI_Controller {
 			$this->load->library('upload', $config);
 			
 			$id = $this->hibah_model->buat_kode();
-			$no_inventaris = $this->input->post('no_inventaris');
+			$no_hibah = $this->hibah_model->buat_kode2();
 			$tanggal = $this->input->post('tanggal');
+			$kategori = $this->input->post('kategori');
 			$judul = $this->input->post('judul');
-			$asal = $this->input->post('asal');
-			$pengarang = $this->input->post('pengarang');
+			$cetakan = $this->input->post('cetakan');
 			$penanggungjawab = $this->input->post('penanggungjawab');
 			$kota = $this->input->post('kota');
 			$penerbit = $this->input->post('penerbit');
 			$tahun = $this->input->post('tahun');
+			$lokasi = $this->input->post('lokasi');
 			$jumlahjudul = $this->input->post('jumlahjudul');
-			$jumlaheks = $this->input->post('jumlaheks');
 		
 		
 			if ($namaFile == '') {
@@ -166,16 +177,16 @@ class hibah extends CI_Controller {
 			$data=array(
 
 				'id'=>$id,
-				'no_inventaris'=>$no_inventaris,
+				'no_hibah'=>$no_hibah,
 				'tanggal'=>$tanggal,
+				'kategori'=>$kategori,
 				'penerbit'=>$penerbit,
-				'pengarang'=>$pengarang,
-				'asal'=>$asal,
 				'judul'=>$judul,
+				'cetakan'=>$cetakan,
 				'penanggungjawab'=>$penanggungjawab,
 				'kota'=>$kota,
-				'jumlaheks'=>$jumlaheks,
 				'tahun' => $tahun,
+				'lokasi'=>$lokasi,
 				'jumlahjudul' => $jumlahjudul,
 				'foto' => $ganti
 					);
@@ -207,17 +218,17 @@ class hibah extends CI_Controller {
 			$this->load->library('upload', $config);
 			
 			$id = $this->input->post('id');
-			$no_inventaris = $this->input->post('no_inventaris'); 
+			$no_hibah = $this->input->post('no_hibah'); 
 			$tanggal = $this->input->post('tanggal');
+			$kategori = $this->input->post('kategori');
 			$judul = $this->input->post('judul');
-			$asal = $this->input->post('asal');
-			$pengarang = $this->input->post('pengarang');
+			$cetakan = $this->input->post('cetakan');
 			$penanggungjawab = $this->input->post('penanggungjawab');
 			$kota = $this->input->post('kota');
 			$penerbit = $this->input->post('penerbit');
 			$tahun = $this->input->post('tahun');
+			$lokasi = $this->input->post('lokasi');
 			$jumlahjudul = $this->input->post('jumlahjudul');
-			$jumlaheks = $this->input->post('jumlaheks');
 	
 			$flama = $this->input->post('fotoLama');
 		
@@ -253,16 +264,16 @@ class hibah extends CI_Controller {
 	
 			$data=array(
 
-				'no_inventaris'=>$no_inventaris,
+				'no_hibah'=>$no_hibah,
 				'tanggal'=>$tanggal,
+				'kategori'=>$kategori,
 				'penerbit'=>$penerbit,
-				'pengarang'=>$pengarang,
-				'asal'=>$asal,
 				'judul'=>$judul,
+				'cetakan' =>$cetakan,
 				'penanggungjawab'=>$penanggungjawab,
 				'kota'=>$kota,
-				'jumlaheks'=>$jumlaheks,
 				'tahun' => $tahun,
+				'lokasi' => $lokasi,
 				'jumlahjudul' => $jumlahjudul,
 				'foto' => $ganti
 					);
@@ -341,16 +352,15 @@ class hibah extends CI_Controller {
 			// Buat header tabel nya pada baris ke 3
 			$sheet->setCellValue('A3', "NO"); // Set kolom A3 dengan tulisan "NO"
 			$sheet->setCellValue('B3', "TANGGAL"); // Set kolom B3 dengan tulisan "TANGGAL"
-			$sheet->setCellValue('C3', "ASAL"); // Set kolom C3 dengan tulisan "ASAL"
+			$sheet->setCellValue('C3', "KATAGORI"); // Set kolom C3 dengan tulisan "KATAGORI"
 			$sheet->setCellValue('D3', "JUDUL"); // Set kolom D3 dengan tulisan "JUDUL"
-			$sheet->setCellValue('E3', "PENGARANG"); // Set kolom E3 dengan tulisan "PENGARANG"
+			$sheet->setCellValue('E3', "CETAKAN"); // Set kolom E3 dengan tulisan "CETAKAN"
 			$sheet->setCellValue('F3', "PENANGGUNG JAWAB"); // Set kolom F3 dengan tulisan "PENANGGUNGJAWAB"
 			$sheet->setCellValue('G3', "KOTA"); // Set kolom G3 dengan tulisan "KOTA"
 			$sheet->setCellValue('H3', "PENERBIT"); // Set kolom H3 dengan tulisan "PENERBIT"
 			$sheet->setCellValue('I3', "TAHUN"); // Set kolom I3 dengan tulisan "TAHUN"
-			$sheet->setCellValue('J3', "JUMLAH JUDUL"); // Set kolom J3 dengan tulisan "JUMLAH JUDUL"
-			$sheet->setCellValue('K3', "JUMLAH EKS"); // Set kolom K3 dengan tulisan "JUMLAH EKS"
-			$sheet->setCellValue('L3', "NO INVENTARIS"); // Set kolom L3 dengan tulisan "NO INVENTARIS"
+			$sheet->setCellValue('J3', "LOKASI");
+			$sheet->setCellValue('L3', "NO HIBAH"); // Set kolom L3 dengan tulisan "NO INVENTARIS"
 			// Apply style header yang telah kita buat tadi ke masing-masing kolom header
 			$sheet->getStyle('A1')->applyFromArray($style_col);
 			$sheet->getStyle('A3')->applyFromArray($style_col);
@@ -364,7 +374,6 @@ class hibah extends CI_Controller {
 			$sheet->getStyle('I3')->applyFromArray($style_col);
 			$sheet->getStyle('J3')->applyFromArray($style_col);
 			$sheet->getStyle('K3')->applyFromArray($style_col);
-			$sheet->getStyle('L3')->applyFromArray($style_col);
 			// Panggil function view yang ada di hibah_Model untuk menampilkan semua data HIBAH
 			$hibah = $this->hibah_model->view();
 			$no = 1; // Untuk penomoran tabel, di awal set dengan 1
@@ -372,16 +381,15 @@ class hibah extends CI_Controller {
 			foreach($hibah as $data){ // Lakukan looping pada variabel hibah
 			  $sheet->setCellValue('A'.$numrow, $no);
 			  $sheet->setCellValue('B'.$numrow, $data->tanggal);
-			  $sheet->setCellValue('C'.$numrow, $data->asal);
+			  $sheet->setCellValue('C'.$numrow, $data->kategori);
 			  $sheet->setCellValue('D'.$numrow, $data->judul);
-			  $sheet->setCellValue('E'.$numrow, $data->pengarang);
+			  $sheet->setCellValue('E'.$numrow, $data->cetakan);
 			  $sheet->setCellValue('F'.$numrow, $data->penanggungjawab);
 			  $sheet->setCellValue('G'.$numrow, $data->kota);
 			  $sheet->setCellValue('H'.$numrow, $data->penerbit);
 			  $sheet->setCellValue('I'.$numrow, $data->tahun);
-			  $sheet->setCellValue('J'.$numrow, $data->jumlahjudul);
-			  $sheet->setCellValue('K'.$numrow, $data->jumlaheks);
-			  $sheet->setCellValue('L'.$numrow, $data->no_inventaris);
+			  $sheet->setCellValue('J'.$numrow, $data->lokasi);
+			  $sheet->setCellValue('K'.$numrow, $data->no_hibah);
 			  
 			  // Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 			  $sheet->getStyle('A'.$numrow)->applyFromArray($style_row);
@@ -395,23 +403,21 @@ class hibah extends CI_Controller {
 			  $sheet->getStyle('I'.$numrow)->applyFromArray($style_row);
 			  $sheet->getStyle('J'.$numrow)->applyFromArray($style_row);
 			  $sheet->getStyle('K'.$numrow)->applyFromArray($style_row);
-			  $sheet->getStyle('L'.$numrow)->applyFromArray($style_row);
 			  $no++; // Tambah 1 setiap kali looping
 			  $numrow++; // Tambah 1 setiap kali looping
 			}
 			// Set width kolom
 			$sheet->getColumnDimension('A')->setWidth(4); // Set width kolom A
-			$sheet->getColumnDimension('B')->setWidth(10); // Set width kolom B
-			$sheet->getColumnDimension('C')->setWidth(30); // Set width kolom C
+			$sheet->getColumnDimension('B')->setWidth(15); // Set width kolom B
+			$sheet->getColumnDimension('C')->setWidth(20); // Set width kolom C
 			$sheet->getColumnDimension('D')->setWidth(50); // Set width kolom D
-			$sheet->getColumnDimension('E')->setWidth(30); // Set width kolom E
+			$sheet->getColumnDimension('E')->setWidth(10); // Set width kolom E
 			$sheet->getColumnDimension('F')->setWidth(30); // Set width kolom E
 			$sheet->getColumnDimension('G')->setWidth(10); // Set width kolom E
-			$sheet->getColumnDimension('H')->setWidth(20); // Set width kolom E
+			$sheet->getColumnDimension('H')->setWidth(30); // Set width kolom E
 			$sheet->getColumnDimension('I')->setWidth(10); // Set width kolom E
-			$sheet->getColumnDimension('J')->setWidth(20); // Set width kolom E
-			$sheet->getColumnDimension('K')->setWidth(20); // Set width kolom E
-			$sheet->getColumnDimension('L')->setWidth(20); // Set width kolom E
+			$sheet->getColumnDimension('J')->setWidth(20);
+			$sheet->getColumnDimension('K')->setWidth(20);
 			
 			// Set height semua kolom menjadi auto (mengikuti height isi dari kolommnya, jadi otomatis)
 			$sheet->getDefaultRowDimension()->setRowHeight(-1);
